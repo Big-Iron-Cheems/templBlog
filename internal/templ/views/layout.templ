@@ -1,0 +1,43 @@
+package views
+
+import "templBlog/internal/templ/components"
+
+// Layout is the base container for all pages.
+templ Layout(children ...templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en" class="h-full min-w-[360px]">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<!-- tailwind css -->
+			<link href="/internal/static/css/tailwind.css" rel="stylesheet"/>
+			<!-- chroma css -->
+			<link href="/internal/static/css/chroma.css" rel="stylesheet"/>
+			<!-- favicon -->
+			<link rel="icon" href="/internal/static/favicon.ico"/>
+			<title>My blog</title>
+		</head>
+		<body class="flex flex-col min-h-full dark:bg-slate-900">
+			<!-- header -->
+			<header class="*:flex-shrink-0 flex space-x-4 justify-between items-center p-4 bg-gray-200 dark:bg-gray-700">
+				<a href="/" class="text-xl font-bold dark:text-slate-200">Site Name</a>
+				<nav class="flex space-x-4">
+					<a href="/about" class="text-lg dark:text-slate-200 hover:underline">About Me</a>
+					<a href="/contacts" class="text-lg dark:text-slate-200 hover:underline">Contacts</a>
+				</nav>
+				@components.DarkModeBtn()
+			</header>
+			<!-- main content -->
+			<div class="flex-grow container mx-auto my-4">
+				for _, child := range children {
+					@child
+				}
+			</div>
+			<!-- footer -->
+			<footer class="p-4 bg-gray-200 dark:bg-gray-700">
+				<p class="text-center dark:text-slate-200">© 2024 My blog</p>
+			</footer>
+			@components.ScrollToTopBtn()
+		</body>
+	</html>
+}

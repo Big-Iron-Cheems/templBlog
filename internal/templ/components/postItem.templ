@@ -1,0 +1,25 @@
+package components
+
+import "templBlog/internal/models"
+
+// PostItem is a component that renders a post item in the Index grid.
+templ PostItem(post models.PostMetadata) {
+	<div class="post prose dark:prose-invert">
+		<header class="space-y-0 [&_*]:m-0">
+			<h2 class="post-title text-2xl font-bold dark:text-slate-200">
+				<a href={ templ.URL("/posts/" + post.Slug) } class="no-underline hover:underline">{ post.Title }</a>
+			</h2>
+			<p class="text-sm dark:text-slate-400">By { post.Author } on { post.Date.Format("Jan 02, 2006") }</p>
+		</header>
+		if post.Tags != nil {
+			<div class="flex flex-wrap gap-2 mt-2">
+				for _, tag := range post.Tags {
+					<button class="post-tags">#{ tag }</button>
+				}
+			</div>
+		}
+		if post.Brief != "" {
+			<p class="post-content">{ post.Brief }</p>
+		}
+	</div>
+}

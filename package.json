@@ -1,0 +1,16 @@
+{
+  "name": "templblog",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss build -i internal/static/css/style.css -o internal/static/css/tailwind.css --minify",
+    "watch": "tailwindcss build -i internal/static/css/style.css -o internal/static/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.15"
+  }
+}

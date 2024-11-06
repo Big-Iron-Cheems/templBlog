@@ -1,0 +1,75 @@
+package views
+
+templ blogPost(title, author, date, content, tocHTML, prevSlug, nextSlug string, tags []string) {
+	<div class="w-full md:w-3/4 mx-auto">
+		<!-- Post Section -->
+		<article class="prose dark:prose-invert flex flex-row">
+			<aside class="pr-4 flex-shrink-0 hidden md:block sticky top-2.5 h-screen overflow-y-auto">
+				<!-- TOC Section -->
+				<div id="toc-container">
+					<button id="toc-toggle">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+						</svg>
+						<span>Toggle TOC</span>
+					</button>
+					<script src="/internal/static/js/tocButton.js"></script>
+					<nav id="toc-content" class="toc">
+						@templ.Raw(tocHTML)
+					</nav>
+				</div>
+			</aside>
+			<!-- Content Section -->
+			<div class="w-full md:w-3/4">
+				<!-- Header -->
+				<header class="space-y-0 [&_*]:m-0">
+					<p><em class="dark:text-slate-400">{ date }</em></p>
+					<h1 class="dark:text-slate-200">{ title }</h1>
+					<p><strong class="dark:text-slate-400">By { author }</strong></p>
+				</header>
+				<!-- Tags -->
+				if tags != nil {
+					<div class="flex flex-wrap gap-2 mt-2">
+						for _, tag := range tags {
+							<button>
+								#{ tag }
+							</button>
+						}
+					</div>
+				}
+				<!-- Content -->
+				@templ.Raw(content)
+			</div>
+		</article>
+		<!-- Nav section -->
+		if prevSlug != "" || nextSlug != "" {
+			<div class="prose dark:prose-invert my-8 flex justify-between">
+				if prevSlug != "" {
+					<a href={ templ.URL("/posts/" + prevSlug) } class="mr-auto flex no-underline">
+						<button>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"></path>
+							</svg>
+							Previous Post
+						</button>
+					</a>
+				}
+				if nextSlug != "" {
+					<a href={ templ.URL("/posts/" + nextSlug) } class="ml-auto flex no-underline">
+						<button>
+							Next Post
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
+							</svg>
+						</button>
+					</a>
+				}
+			</div>
+		}
+	</div>
+}
+
+// BlogPost is the template that defines a unique blog post page.
+templ BlogPost(title, author, date, content, tocHTML, prevSlug, nextSlug string, tags []string) {
+	@Layout(blogPost(title, author, date, content, tocHTML, prevSlug, nextSlug, tags))
+}

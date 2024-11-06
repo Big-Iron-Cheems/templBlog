@@ -1,0 +1,29 @@
+root = "."
+tmp_dir = "bin"
+
+[build]
+bin = "./bin/templBlog"
+cmd = "templ generate && go build -o ./bin/templBlog ."
+delay = 1000
+exclude_dir = ["node_modules"]
+include_dir = ["internal", "posts"]
+exclude_regex = [".*_templ.go"]
+exclude_unchanged = false
+follow_symlink = false
+include_ext = ["go", "templ", "html", "js", "css", "md"]
+kill_delay = "0s"
+log = "build-errors.log"
+send_interrupt = false
+stop_on_error = true
+
+[color]
+build = "yellow"
+main = "magenta"
+runner = "green"
+watcher = "cyan"
+
+[log]
+time = false
+
+[misc]
+clean_on_exit = true

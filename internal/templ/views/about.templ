@@ -1,0 +1,25 @@
+package views
+
+templ about() {
+	<div class="prose dark:prose-invert">
+		<header><h1>About Me</h1></header>
+		<main>
+			<section>
+				<h2>Introduction</h2>
+				<p>Hello! My name is [Your Name]. I am a [Your Profession] with a passion for [Your Interests].</p>
+			</section>
+			<section>
+				<h2>Background</h2>
+				<p>I have been working in the field of [Your Field] for [Number] years. I have experience in [Your Skills or Projects].</p>
+			</section>
+			<section>
+				<h2>Hobbies</h2>
+				<p>In my free time, I enjoy [Your Hobbies].</p>
+			</section>
+		</main>
+	</div>
+}
+
+templ About() {
+	@Layout(about())
+}

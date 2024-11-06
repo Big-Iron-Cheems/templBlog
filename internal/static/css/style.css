@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.prose {
+    max-width: 100ch !important;
+}
+
+.post {
+    @apply
+    box-border
+    overflow-ellipsis
+    p-4
+    bg-gray-100
+    dark:bg-gray-700
+}
+
+.post-content {
+    @apply
+    mt-4
+    dark:text-slate-200
+    line-clamp-5
+    overflow-ellipsis
+}
+
+.post-tags {
+    @apply
+    border-black
+    border-2
+}
+
+#search {
+    @apply
+    p-2
+    w-full
+    border
+    dark:border-black
+    dark:bg-gray-700
+    dark:text-slate-200
+}
+
+#dark-mode-toggle {
+    @apply
+    border-black
+    border-2
+    dark:text-slate-200
+}
+
+#scroll-to-top {
+    @apply
+    hidden
+    fixed
+    bottom-16 right-8
+    dark:text-slate-200
+    z-50
+}
+
+#scroll-to-top.show {
+    @apply flex
+}
+
+button {
+    @apply p-1 bg-gray-200 dark:bg-gray-700 rounded flex items-center space-x-1 hover:bg-gray-300 dark:hover:bg-gray-600
+}
+
+svg {
+    @apply stroke-current size-6
+}
+
+svg:not([fill="none"]) {
+    @apply fill-current
+}

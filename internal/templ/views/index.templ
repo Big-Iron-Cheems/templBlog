@@ -1,0 +1,40 @@
+package views
+
+import (
+	"templBlog/internal/models"
+	"templBlog/internal/templ/components"
+)
+
+templ index(posts []models.PostMetadata) {
+	<header>
+		<h1 class="text-center text-3xl font-bold dark:text-slate-200">
+			My Posts
+		</h1>
+	</header>
+	<body>
+		// Search bar
+		<div class="my-4">
+			<input
+				type="search"
+				id="search"
+				placeholder='Search posts... (use text, #tags, or "exact matches")'
+				aria-label='Search posts (use text, #tags, or "exact matches")'
+				onkeyup="filterPosts('search', 'postGrid', 'post')"
+				pattern="^[\p{L}\p{N}\p{M}\p{P}\p{S} ]$"
+			/>
+		</div>
+		// Grid with posts
+		<div id="postGrid" class="grid gap-4 grid-cols-2 sm:grid-cols-3">
+			for _, post := range posts {
+				@components.PostItem(post)
+			}
+		</div>
+		// JS for filtering grid entries
+		<script src="/internal/static/js/filterPosts.js"></script>
+	</body>
+}
+
+// Index is the main page of the blog, showing a grid of all posts.
+templ Index(posts []models.PostMetadata) {
+	@Layout(index(posts))
+}
