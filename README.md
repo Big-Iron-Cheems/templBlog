@@ -1,6 +1,6 @@
 # Example Blog Post website
 
-This project showcases a minimalist blog website created entirely in golang.
+This project showcases a minimalist blog website created entirely in Golang.
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ Some important directories and files in the project are:
 
 ## Used technologies
 
-- [Templ](https://github.com/a-h/templ) for golang based templating of HTML files.
+- [Templ](https://github.com/a-h/templ) for Golang based templating of HTML files.
 - [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) for styling.
 - [Chroma](https://github.com/alecthomas/chroma) for syntax highlighting in Markdown codeblocks.
 - [Air](https://github.com/air-verse/air) for live reloading of the website.
